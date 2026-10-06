@@ -13,48 +13,27 @@ var reloadTask = new Task(loadFolder, this);
 var loadAttempts = 0, pendingStart = false;
 
 function display(name, value) { outlet(4, name, value); }
-function clearVoices() {
-    var object = this.patcher.firstobject;
-    while (object) {
-        var next = object.nextobject;
-        if (String(object.varname).indexOf('sync_voice_') === 0) this.patcher.remove(object);
-        object = next;
-    }
-    voices = [];
+function voiceMessage(index, name, value) {
+    outlet(3, 'target', index + 1);
+    outlet(3, name, value);
 }
+function clearVoices() { voices = []; }
 function buildVoices() {
-    clearVoices();
-    var patch = this.patcher;
-    var clock = patch.getnamed('shared_time');
-    var outL = patch.getnamed('output_left'), outR = patch.getnamed('output_right');
+    voices = [];
+    outlet(3, 'voices', files.length);
     for (var i = 0; i < files.length; i++) {
-        var y = 2350 + i * 100;
-        var reader = patch.newdefault(25, y, 'play~', bank + '.' + (i + 1), 2);
-        var envelope = patch.newdefault(250, y, 'line~', 0);
-        var inRange = patch.newdefault(250, y + 30, '<~', lengths[i]);
-        var gain = patch.newdefault(350, y + 30, '*~');
-        var left = patch.newdefault(350, y, '*~');
-        var right = patch.newdefault(450, y, '*~');
-        patch.connect(clock, 0, reader, 0);
-        patch.connect(reader, 0, left, 0);
-        patch.connect(reader, channels[i] === 1 ? 0 : 1, right, 0);
-        patch.connect(clock, 0, inRange, 0);
-        patch.connect(inRange, 0, gain, 0);
-        patch.connect(envelope, 0, gain, 1);
-        patch.connect(gain, 0, left, 1);
-        patch.connect(gain, 0, right, 1);
-        patch.connect(left, 0, outL, 0);
-        patch.connect(right, 0, outR, 0);
-        var objects = [reader, envelope, left, right, inRange, gain];
-        for (var j = 0; j < objects.length; j++) objects[j].varname = 'sync_voice_' + i + '_' + j;
-        voices.push({objects: objects, envelope: envelope, gain: 0});
+        voiceMessage(i, 'setbuf', bank + '.' + (i + 1));
+        voiceMessage(i, 'mono', channels[i] === 1 ? 1 : 0);
+        voiceMessage(i, 'duration', lengths[i]);
+        voiceMessage(i, 'gain', 0);
+        voices.push({gain: 0});
     }
     outlet(1, duration);
     outlet(2, 0);
 }
 function muteVoices() {
     for (var i = 0; i < voices.length; i++) {
-        voices[i].envelope.message(0, 50);
+        voiceMessage(i, 'gain', 0);
         voices[i].gain = 0;
     }
 }
@@ -171,7 +150,7 @@ function showPair() {
         var value = !playing ? 0 : (i === left ? Math.cos(x * Math.PI / 2) :
                     (i === right ? Math.sin(x * Math.PI / 2) : 0));
         if (Math.abs(value - voices[i].gain) > 0.000001) {
-            voices[i].envelope.message(value, 50);
+            voiceMessage(i, 'gain', value);
             voices[i].gain = value;
         }
     }

@@ -2511,6 +2511,20 @@
           ],
           "varname": "shared_time"
         }
+      },
+      {
+        "box": {
+          "id": "sync_players",
+          "maxclass": "newobj",
+          "text": "poly~ synchronized_voice 12",
+          "patching_rect": [
+            240,
+            2290,
+            225,
+            22
+          ],
+          "varname": "sync_players"
+        }
       }
     ],
     "lines": [
@@ -4034,6 +4048,54 @@
           ],
           "destination": [
             "shared_time",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "shared_time",
+            0
+          ],
+          "destination": [
+            "sync_players",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "nav",
+            3
+          ],
+          "destination": [
+            "sync_players",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sync_players",
+            0
+          ],
+          "destination": [
+            "outL",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "sync_players",
+            1
+          ],
+          "destination": [
+            "outR",
             0
           ]
         }

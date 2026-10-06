@@ -17,7 +17,7 @@ import soundfile as sf
 from pythonosc.osc_message import OscMessage
 from pythonosc.udp_client import SimpleUDPClient
 from eeg.thinkgear import ThinkGearParser, BANDS
-from eeg.eeg_bridge import Participant, next_position, reader, send_device_status, ReceiverManager, create_control_server
+from eeg.eeg_bridge import Participant, next_position, current_mode, POSITION_SMOOTHING, reader, send_device_status, ReceiverManager, create_control_server
 from flowedit.prepare_audio import save_sequence, describe, request, NUM_INTERMEDIATES
 
 
@@ -70,9 +70,60 @@ class BridgeTests(unittest.TestCase):
         self.assertAlmostEqual(next_position(.5, 20, 80), .53)
         self.assertEqual(next_position(.5, 50, 50), .5)
         self.assertEqual(next_position(.5, 0, 0), .5)
-        self.assertAlmostEqual(next_position(0, 80, 20, False), .05)
+        self.assertAlmostEqual(next_position(0, 80, 20, False, False), .05)
         for _ in range(1000):
             self.assertTrue(0 <= next_position(.5, 0, 100) <= 1)
+
+    def test_solo_modes_endpoints_and_invalid_attention_ignored(self):
+        cases = [
+            (True, False, 0, 100, 'Solo A', .5),
+            (True, False, 50, 100, 'Solo A', .25),
+            (True, False, 100, 0, 'Solo A', 0),
+            (False, True, 100, 0, 'Solo B', .5),
+            (False, True, 100, 50, 'Solo B', .75),
+            (False, True, 0, 100, 'Solo B', 1),
+            (True, True, 80, 20, 'Duo', .2),
+            (True, True, 20, 80, 'Duo', .8),
+            (True, True, 3, 4, 'Duo', .5),
+            (False, False, 100, 100, 'Neutral', .5),
+        ]
+        for usable_a, usable_b, a, b, mode, target in cases:
+            with self.subTest(mode=mode, a=a, b=b):
+                self.assertEqual(current_mode(usable_a, usable_b), mode)
+                position = .5
+                for _ in range(300):
+                    position = next_position(position, a, b, usable_a, usable_b)
+                self.assertAlmostEqual(position, target, places=10)
+        self.assertEqual(next_position(.5, 80, 0, True, False),
+                         next_position(.5, 80, 100, True, False))
+        self.assertEqual(next_position(.5, 0, 80, False, True),
+                         next_position(.5, 100, 80, False, True))
+
+    def test_mode_switches_preserve_position_smoothing(self):
+        position = .8
+        for usable_a, usable_b, target in [(True, True, .5), (True, False, 0),
+                                           (False, True, 1), (False, False, .5)]:
+            previous = position
+            position = next_position(previous, 100, 100, usable_a, usable_b)
+            self.assertAlmostEqual(position, previous + POSITION_SMOOTHING * (target - previous))
+            self.assertLessEqual(abs(position - previous), POSITION_SMOOTHING)
+
+    def test_modes_follow_existing_signal_and_staleness_gates(self):
+        a, b = Participant(), Participant()
+        a.connected = b.connected = True
+        with patch('eeg.eeg_bridge.time.monotonic', return_value=10):
+            a.update({'signal': 50, 'attention': 100})
+            b.update({'signal': 0, 'attention': 100})
+            self.assertEqual(current_mode(a.snapshot()[1], b.snapshot()[1]), 'Duo')
+            b.update({'signal': 51})
+            self.assertEqual(current_mode(a.snapshot()[1], b.snapshot()[1]), 'Solo A')
+            b.update({'signal': 200})
+            self.assertEqual(current_mode(a.snapshot()[1], b.snapshot()[1]), 'Solo A')
+            b.update({'signal': 0, 'attention': 100})
+            a.connected = False
+            self.assertEqual(current_mode(a.snapshot()[1], b.snapshot()[1]), 'Solo B')
+        with patch('eeg.eeg_bridge.time.monotonic', return_value=14):
+            self.assertEqual(current_mode(a.snapshot()[1], b.snapshot()[1]), 'Neutral')
 
     def test_gating_smoothing_and_staleness(self):
         p = Participant()
@@ -379,6 +430,14 @@ class FlowTests(unittest.TestCase):
         self.assertEqual(boxes['mic']['text'], 'adc~ 1')
         self.assertEqual(boxes['prompt']['maxclass'], 'comment')
         cords = [(line['patchline']['source'], line['patchline']['destination']) for line in patch['lines']]
+        self.assertEqual(boxes['sync_players']['text'], 'poly~ synchronized_voice 12')
+        self.assertIn((['shared_time', 0], ['sync_players', 0]), cords)
+        self.assertIn((['nav', 3], ['sync_players', 0]), cords)
+        voice = json.loads((Path(__file__).resolve().parents[1]/'max/synchronized_voice.maxpat').read_text())['patcher']
+        voice_text = [item['box'].get('text') for item in voice['boxes']]
+        self.assertIn('in 1', voice_text)
+        self.assertIn('in~ 1', voice_text)
+        self.assertNotIn('phasor~', voice_text)
         self.assertIn((['mic', 0], ['recorder_a', 0]), cords)
         self.assertIn((['session', 1], ['recorder_b', 0]), cords)
         self.assertIn((['oscroute', 7], ['set_device_a', 0]), cords)

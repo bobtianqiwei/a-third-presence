@@ -102,9 +102,26 @@ def reader(port, participant, stop):
         participant.connected = False
 
 
-def next_position(previous, a, b, usable=True):
-    total = a + b
-    target = b / total if usable and total >= MIN_ATTENTION_SUM else 0.5
+def current_mode(usable_a, usable_b):
+    if usable_a and usable_b:
+        return 'Duo'
+    if usable_a:
+        return 'Solo A'
+    if usable_b:
+        return 'Solo B'
+    return 'Neutral'
+
+
+def next_position(previous, a, b, usable_a=True, usable_b=True):
+    if usable_a and usable_b:
+        total = a + b
+        target = b / total if total >= MIN_ATTENTION_SUM else 0.5
+    elif usable_a:
+        target = 0.5 * (1 - a / 100)
+    elif usable_b:
+        target = 0.5 + 0.5 * b / 100
+    else:
+        target = 0.5
     return max(0.0, min(1.0, previous + POSITION_SMOOTHING * (target - previous)))
 
 
@@ -259,8 +276,10 @@ def main():
                 manager.request_scan = False
                 manager.update_available(scan_ports())
             snapshots = [person.snapshot() for person in manager.people]
+            usable_a, usable_b = snapshots[0][1], snapshots[1][1]
+            mode = current_mode(usable_a, usable_b)
             position = next_position(position, snapshots[0][0]['attention'],
-                                     snapshots[1][0]['attention'], all(s[1] for s in snapshots))
+                                     snapshots[1][0]['attention'], usable_a, usable_b)
             try:
                 for label, (values, _, _) in zip('ab', snapshots):
                     for name, value in values.items():
@@ -282,7 +301,7 @@ def main():
                     device = 'SIMULATED (no receiver)' if args.simulate else (manager.ports[i] or 'Not assigned')
                     lines += [f'Participant {label}: {status}', f'Device: {device}',
                               f"Attention: {values['attention']/100:.2f}  Meditation: {values['meditation']/100:.2f}  Signal: {values['signal']}  Valid: {usable}"]
-                lines += [f'Sound Position: {position:.2f}', f'OSC: {OSC_HOST}:{OSC_PORT}',
+                lines += [f'Mode: {mode}', f'Sound Position: {position:.2f}', f'OSC: {OSC_HOST}:{OSC_PORT}',
                           f'Max Controls: {OSC_HOST}:{CONTROL_PORT}', manager.status]
                 print(('\033[2J\033[H' if sys.stdout.isatty() else '') + '\n'.join(lines), flush=True)
             stop.wait(0.05)
