@@ -9,6 +9,7 @@ audio/generated/metadata.json
 audio/.flowedit-*/
 audio/generated.previous/
 audio/prompt.json
+audio/prompt-edits.json
 audio/*.log
 *.key
 .env

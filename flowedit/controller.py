@@ -47,6 +47,7 @@ class Controller:
         self.client = SimpleUDPClient('127.0.0.1', 9000)
         self.status = 'System ready. Record A and B, then generate B prompt.'
         self.prompt = ''
+        self.prompt_a = ''
         self.lock = threading.Lock()
         self.bridge = None
         self.log = None
@@ -75,30 +76,47 @@ class Controller:
         if not self.lock.acquire(blocking=False):
             self.send('status', 'A FlowEdit job is already running. Please wait.')
             return
-        self.worker = threading.Thread(target=self.run, args=(address.endswith('/generate'),), daemon=True)
+        prompts = tuple(str(value).strip() for value in _[:2]) if address.endswith('/generate') and len(_) >= 2 else None
+        label = 'A' if address.endswith('/a') else 'B'
+        self.worker = threading.Thread(target=self.run, args=(address.endswith('/generate'), prompts, label), daemon=True)
         self.worker.start()
 
-    def run(self, generate):
+    def caption(self, session, label, data):
+        fingerprint = hashlib.sha256(data).hexdigest()
+        cached = json.loads(CACHE.read_text()) if CACHE.is_file() else {}
+        entry = cached.get('a', {}) if label == 'A' else cached
+        if entry.get('sha256') == fingerprint:
+            caption = entry['caption']
+        else:
+            self.status = 'Describing ' + label + ' recording...'
+            caption = describe(session, data)
+            entry = dict(sha256=fingerprint, caption=caption)
+            if label == 'A':
+                cached['a'] = entry
+            else:
+                cached.update(entry)
+            CACHE.write_text(json.dumps(cached) + '\n')
+        if label == 'A':
+            self.prompt_a = caption
+            self.send('prompt_a', caption)
+        else:
+            self.prompt = caption
+            self.send('prompt', caption)
+        return caption
+
+    def run(self, generate, prompts=None, label='B'):
         try:
-            b, _ = read_audio('B')
-            fingerprint = hashlib.sha256(b).hexdigest()
-            cached = json.loads(CACHE.read_text()) if CACHE.is_file() else {}
             with requests.Session() as session:
                 session.headers['Authorization'] = 'Bearer ' + load_key()
-                if cached.get('sha256') == fingerprint:
-                    caption = cached['caption']
-                else:
-                    self.status = 'Describing B recording...'
-                    caption = describe(session, b)
-                    CACHE.write_text(json.dumps({'sha256': fingerprint, 'caption': caption}) + '\n')
-                self.prompt = caption
-                self.send('prompt', caption)
                 if not generate:
-                    self.status = 'B prompt ready. Click Generate Audio after recording A.'
+                    data, _ = read_audio(label)
+                    self.caption(session, label, data)
+                    self.status = label + ' prompt ready. Edit the API prompts, then click Generate Audio.'
                     return
+                b, _ = read_audio('B')
+                caption = prompts[1] if prompts and prompts[1] else self.caption(session, 'B', b)
                 a, info = read_audio('A')
-                self.status = 'Describing A recording...'
-                source = describe(session, a)
+                source = prompts[0] if prompts and prompts[0] else self.caption(session, 'A', a)
                 body = dict(src_prompt=source, tar_prompt=caption,
                             audio_b64=base64.b64encode(a).decode(),
                             seconds_total=max(1, min(47, round(info.duration))),
@@ -130,6 +148,7 @@ def main():
     controller = Controller()
     dispatch = Dispatcher()
     dispatch.map('/session/prompt', controller.job)
+    dispatch.map('/session/prompt/a', controller.job)
     dispatch.map('/session/generate', controller.job)
     dispatch.map('/session/eeg', controller.start_eeg)
     try:
@@ -146,6 +165,8 @@ def main():
             server.handle_request()
             if time.monotonic() - last >= 1:
                 controller.send('status', controller.status)
+                if controller.prompt_a:
+                    controller.send('prompt_a', controller.prompt_a)
                 if controller.prompt:
                     controller.send('prompt', controller.prompt)
                 last = time.monotonic()

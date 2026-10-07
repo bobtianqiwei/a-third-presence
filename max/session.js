@@ -1,13 +1,18 @@
 // session.js developed by Bob Tianqi Wei
-// Record mono microphone input and display the generated sequence's B caption.
+// Record mono microphone input and edit source and target API prompts.
 autowatch = 1;
 inlets = 1;
 outlets = 6;
 var backendSeen = 0, livePrompt = false;
-var root = '', generatedFolder = '', recording = '', previousPrompt = null;
-var refreshTask = new Task(refreshPrompt, this);
+var captions = {a: '', b: ''}, drafts = {a: '', b: ''};
+var promptText = new Dict();
+var root = '', generatedFolder = '', recording = '';
+var savedPrompts = '';
+var refreshTask = new Task(refreshAndSave, this);
 var recordingTask = new Task(stoprecord, this);
 var recordStartTask = new Task(beginRecording, this);
+var initializeTask = new Task(loadbang, this);
+initializeTask.schedule(100);
 
 function display(name, value) { outlet(2, name, value); }
 function projectRoot(path) {
@@ -19,39 +24,72 @@ function projectRoot(path) {
     return path.slice(0, -3);
 }
 function loadbang() {
+    initializeTask.cancel();
+    refreshTask.cancel();
     root = projectRoot(this.patcher.filepath);
     generatedFolder = root + 'audio/generated/';
     display('recording', 'Ready. Select the microphone in Max Audio Status.');
-    display('prompt', 'Record B, stop recording, then click Generate B Prompt.');
+    restorePrompts();
     refreshPrompt();
     refreshTask.interval = 2000;
     refreshTask.repeat();
 }
 function folder(path) {
     generatedFolder = String(path);
-    previousPrompt = null;
     refreshPrompt();
 }
 function refreshPrompt() {
     if (livePrompt) return;
     var file = new File(generatedFolder.replace(/\/$/, '') + '/metadata.json', 'read');
-    var prompt = 'Record B, stop recording, then click Generate B Prompt.';
-    if (file.isopen) {
-        try {
-            var text = '';
-            while (file.position < file.eof) text += file.readstring(4096);
-            var metadata = JSON.parse(text);
-            if (typeof metadata.participant_b_description === 'string')
-                prompt = metadata.participant_b_description;
-        } catch (error) {
-            prompt = 'Could not read the generated B prompt. Check metadata.json.';
+    if (!file.isopen) return;
+    try {
+        var text = '';
+        while (file.position < file.eof) text += file.readstring(4096);
+        var metadata = JSON.parse(text);
+        if (typeof metadata.participant_a_description === 'string')
+            receivePrompt('a', metadata.participant_a_description);
+        if (typeof metadata.participant_b_description === 'string')
+            receivePrompt('b', metadata.participant_b_description);
+    } catch (error) {
+        display('backend', 'Could not read prompt metadata.');
+    }
+    file.close();
+}
+function restorePrompts() {
+    var file = new File(root + 'audio/prompt-edits.json', 'read');
+    if (!file.isopen) return;
+    try {
+        var text = '';
+        while (file.position < file.eof) text += file.readstring(4096);
+        var saved = JSON.parse(text);
+        for (var i = 0; i < 2; i++) {
+            var label = i === 0 ? 'a' : 'b';
+            if (typeof saved.drafts[label] !== 'string') continue;
+            captions[label] = saved.captions[label];
+            drafts[label] = saved.drafts[label];
+            setEditor(label, drafts[label]);
         }
-        file.close();
+        savedPrompts = JSON.stringify({captions: captions, drafts: drafts});
+    } catch (error) {
+        display('backend', 'Could not restore saved prompts.');
     }
-    if (prompt !== previousPrompt) {
-        display('prompt', prompt);
-        previousPrompt = prompt;
-    }
+    file.close();
+}
+function refreshAndSave() {
+    refreshPrompt();
+    savePrompts();
+}
+function savePrompts() {
+    if (!root) return;
+    readEditors();
+    var text = JSON.stringify({captions: captions, drafts: drafts});
+    if (text === savedPrompts) return;
+    var file = new File(root + 'audio/prompt-edits.json', 'write', 'TEXT');
+    if (!file.isopen) { display('backend', 'Could not save prompt edits.'); return; }
+    file.eof = 0;
+    file.writestring(text);
+    file.close();
+    savedPrompts = text;
 }
 function record(label) {
     label = String(label).toUpperCase();
@@ -86,8 +124,11 @@ function stoprecord() {
     }
 }
 function notifydeleted() {
+    savePrompts();
+    initializeTask.cancel();
     stoprecord();
     refreshTask.cancel();
+    promptText.freepeer();
 }
 
 function system() {
@@ -105,9 +146,32 @@ function backendstatus() {
     backendSeen = Date.now();
     display('backend', arrayfromargs(arguments).join(' '));
 }
+function receivePrompt(label, text) {
+    if (captions[label] === text) return;
+    captions[label] = text;
+    drafts[label] = text;
+    setEditor(label, text);
+}
+function setEditor(label, text) {
+    // Dictionary text avoids adding Max atom quotes to multiword prompts.
+    promptText.set('text', text);
+    promptText.set('mode', 'set');
+    this.patcher.getnamed('api_prompt_' + label).message('dictionary', promptText.name);
+}
 function backendprompt() {
     livePrompt = true;
-    display('prompt', arrayfromargs(arguments).join(' '));
+    receivePrompt('b', arrayfromargs(arguments).join(' '));
+}
+function backendprompta() {
+    livePrompt = true;
+    receivePrompt('a', arrayfromargs(arguments).join(' '));
+}
+function readEditors() {
+    for (var i = 0; i < 2; i++) {
+        var label = i === 0 ? 'a' : 'b';
+        var value = this.patcher.getnamed('api_prompt_' + label).getvalueof();
+        drafts[label] = value instanceof Array ? value.join(' ') : String(value || '');
+    }
 }
 function complete() { outlet(3, 'reload'); }
 function generate(kind) {
@@ -119,7 +183,12 @@ function generate(kind) {
         display('backend', 'Click Start System first, wait for System ready, then try again.');
         return;
     }
-    outlet(4, kind === 'prompt' ? '/session/prompt' : '/session/generate', 1);
+    if (kind === 'audio') {
+        readEditors();
+        outlet(4, '/session/generate', drafts.a, drafts.b);
+    } else {
+        outlet(4, kind === 'prompta' ? '/session/prompt/a' : '/session/prompt', 1);
+    }
     display('backend', 'Request sent. Waiting for FlowEdit...');
 }
 

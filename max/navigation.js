@@ -11,6 +11,8 @@ var ticker = new Task(tick, this);
 var loadTask = new Task(checkLoaded, this);
 var reloadTask = new Task(loadFolder, this);
 var loadAttempts = 0, pendingStart = false;
+var initializeTask = new Task(loadbang, this);
+initializeTask.schedule(100);
 
 function display(name, value) { outlet(4, name, value); }
 function voiceMessage(index, name, value) {
@@ -46,6 +48,8 @@ function projectRoot(path) {
     return path.slice(0, -3);
 }
 function loadbang() {
+    initializeTask.cancel();
+    ticker.cancel();
     folderPath = projectRoot(this.patcher.filepath) + 'audio/generated/';
     display('folder', folderPath);
     display('status', 'Waiting for OSC');
@@ -57,6 +61,10 @@ function loadbang() {
 }
 function folder(path) { folderPath = String(path); display('folder', folderPath); reload(); }
 function reload() {
+    if (!folderPath) {
+        folderPath = projectRoot(this.patcher.filepath) + 'audio/generated/';
+        display('folder', folderPath);
+    }
     stop();
     ready = false;
     loadTask.cancel();
@@ -163,6 +171,7 @@ function tick() {
     showPair();
 }
 function notifydeleted() {
+    initializeTask.cancel();
     ticker.cancel(); loadTask.cancel(); reloadTask.cancel();
     clearVoices();
 }

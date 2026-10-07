@@ -64,7 +64,7 @@ Service: `https://audioflow.csail.mit.edu`. Authentication: `Authorization: Bear
 - The response contains `intermediates` with `label` and `audio_b64`, plus `final.audio_b64` and `seed`. WAV data arrives inline; no download URLs are assumed.
 - Snapshots are sorted by descending numeric `t` before the final target. Defaults are nine intermediates and 20 denoising steps, giving twelve WAV files including real A, the AI target, and real B.
 
-The notebook uses `FLOWEDIT_KEY`, which takes precedence over the suggested `FLOWEDIT_API_KEY` name in the project brief. B's automatic caption is used directly as the target description. No manual prompt is required.
+The notebook uses `FLOWEDIT_KEY`, which takes precedence over the suggested `FLOWEDIT_API_KEY` name in the project brief. Automatic captions provide the default source and target descriptions. Max lets you edit both API prompts before generating audio.
 
 Inputs must be nonempty mono or stereo WAV files, up to 47 seconds each. The service duration is the rounded duration of A, clamped to 1–47 seconds, as in the notebook. Original A and B remain byte-for-byte copies.
 
@@ -102,7 +102,7 @@ Recording enables DSP. Use the DSP control to turn it off afterward if needed. S
 ./prepare_audio.command
 ```
 
-The script describes A and B, prints both captions, and generates the sequence. After generation completes, Max automatically displays B's caption as **B Target Prompt (generated sequence)**. That caption is used directly as the FlowEdit target prompt. The display reads `metadata.json` in the selected audio folder every two seconds. Recording a new input does not change the previous generated sequence's prompt; run generation again to update it. Outputs are:
+The script describes A and B, prints both captions, and generates the sequence. Max displays both descriptions from `metadata.json` in the selected audio folder. In Max, use **Generate A Prompt** and **Generate B Prompt** to preview captions, edit **A Prompt** and **B Prompt**, then click **Generate Audio** to send those texts as `src_prompt` and `tar_prompt`. Empty fields use automatic captions. Recording a new input does not change a prompt until you generate it again. Outputs are:
 
 ```text
 audio/generated/00_A.wav
@@ -246,8 +246,8 @@ Open `max/performance.maxpat` and click **Start System**. This opens the local `
 
 1. Choose the A and B receivers in their menus.
 2. Select the microphone in Max Audio Status. Click Record A, then Stop Recording. Repeat with Record B.
-3. Click Generate B Prompt. The caption of B recording appears in Max.
-4. Click Generate Audio. The current A recording and the B caption are sent to the course FlowEdit service. B is described again if its WAV has changed.
+3. Click Generate A Prompt and Generate B Prompt to preview both recording descriptions.
+4. Edit A Prompt and B Prompt as needed, then click Generate Audio. Each prompt appears once, in its editable field. Max reads both fields at that click and sends them as `src_prompt` and `tar_prompt`. Empty fields use automatic descriptions. Repeated backend status updates preserve your edits. Edits are saved locally every two seconds in `audio/prompt-edits.json` and restored when the patch opens; this file is ignored by Git.
 5. Wait for Audio ready, then click START. Generated audio loads automatically.
 
 Recordings use absolute project paths: `audio/input/A.wav` and `audio/input/B.wav`. The full recording destination appears at the bottom of the interface. A new recording replaces the corresponding input. No generated files means START cannot play yet; the interface explains the required preparation.

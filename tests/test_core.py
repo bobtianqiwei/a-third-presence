@@ -428,7 +428,15 @@ class FlowTests(unittest.TestCase):
         self.assertEqual(boxes['recorder_a']['text'], 'sfrecord~ 1')
         self.assertEqual(boxes['recorder_b']['text'], 'sfrecord~ 1')
         self.assertEqual(boxes['mic']['text'], 'adc~ 1')
-        self.assertEqual(boxes['prompt']['maxclass'], 'comment')
+        self.assertNotIn('prompt', boxes)
+        self.assertNotIn('prompt_a', boxes)
+        self.assertEqual(boxes['api_prompt_a_label']['text'], 'A Prompt')
+        self.assertEqual(boxes['api_prompt_b_label']['text'], 'B Prompt')
+        for label in 'ab':
+            self.assertEqual(boxes['api_prompt_' + label]['maxclass'], 'textedit')
+            self.assertEqual(boxes['api_prompt_' + label]['outputmode'], 1)
+            self.assertEqual(boxes['api_prompt_' + label]['varname'], 'api_prompt_' + label)
+        self.assertIn('/session/prompt_a', boxes['oscroute']['text'])
         cords = [(line['patchline']['source'], line['patchline']['destination']) for line in patch['lines']]
         self.assertEqual(boxes['sync_players']['text'], 'poly~ synchronized_voice 12')
         self.assertIn((['shared_time', 0], ['sync_players', 0]), cords)

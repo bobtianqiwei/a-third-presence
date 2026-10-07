@@ -12,7 +12,7 @@
       0,
       0,
       1100,
-      1260
+      1450
     ],
     "openinpresentation": 1,
     "default_fontsize": 12,
@@ -101,7 +101,7 @@
             1650,
             22
           ],
-          "text": "route /sound/position /eeg/a/attention /eeg/a/meditation /eeg/a/signal /eeg/b/attention /eeg/b/meditation /eeg/b/signal /eeg/a/device /eeg/b/device /eeg/a/status /eeg/b/status /eeg/devices /eeg/control/status /session/status /session/prompt /session/complete"
+          "text": "route /sound/position /eeg/a/attention /eeg/a/meditation /eeg/a/signal /eeg/b/attention /eeg/b/meditation /eeg/b/signal /eeg/a/device /eeg/b/device /eeg/a/status /eeg/b/status /eeg/devices /eeg/control/status /session/status /session/prompt /session/complete /session/prompt_a"
         }
       },
       {
@@ -1813,59 +1813,6 @@
       },
       {
         "box": {
-          "id": "prompt_label",
-          "maxclass": "comment",
-          "patching_rect": [
-            25,
-            925,
-            700,
-            24
-          ],
-          "text": "B Target Prompt",
-          "presentation": 1,
-          "presentation_rect": [
-            25,
-            955,
-            700,
-            24
-          ]
-        }
-      },
-      {
-        "box": {
-          "id": "prompt",
-          "maxclass": "comment",
-          "patching_rect": [
-            25,
-            955,
-            780,
-            100
-          ],
-          "text": "No generated B prompt yet. Run prepare_audio.command after recording.",
-          "presentation": 1,
-          "presentation_rect": [
-            25,
-            985,
-            780,
-            100
-          ]
-        }
-      },
-      {
-        "box": {
-          "id": "set_prompt",
-          "maxclass": "newobj",
-          "patching_rect": [
-            1200,
-            1368,
-            180,
-            22
-          ],
-          "text": "prepend set"
-        }
-      },
-      {
-        "box": {
           "id": "session",
           "maxclass": "newobj",
           "patching_rect": [
@@ -1887,7 +1834,7 @@
             330,
             22
           ],
-          "text": "route prompt recording dsp backend recordpath"
+          "text": "route prompt recording dsp backend recordpath prompt_a"
         }
       },
       {
@@ -2250,8 +2197,8 @@
           "text": "Generate B Prompt",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            1095,
+            245,
+            1105,
             195,
             28
           ],
@@ -2308,8 +2255,8 @@
           "text": "Generate Audio",
           "presentation": 1,
           "presentation_rect": [
-            240,
-            1095,
+            465,
+            1105,
             195,
             28
           ],
@@ -2367,7 +2314,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            1135,
+            1145,
             1000,
             65
           ]
@@ -2465,7 +2412,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            1210,
+            1245,
             1020,
             24
           ]
@@ -2524,6 +2471,169 @@
             22
           ],
           "varname": "sync_players"
+        }
+      },
+      {
+        "box": {
+          "id": "session_backendprompta",
+          "maxclass": "newobj",
+          "patching_rect": [
+            300,
+            2520,
+            170,
+            22
+          ],
+          "text": "prepend backendprompta"
+        }
+      },
+      {
+        "box": {
+          "id": "api_prompt_a_label",
+          "maxclass": "comment",
+          "patching_rect": [
+            25,
+            2560,
+            490,
+            24
+          ],
+          "text": "A Prompt",
+          "presentation": 1,
+          "presentation_rect": [
+            25,
+            955,
+            490,
+            24
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "api_prompt_a",
+          "maxclass": "textedit",
+          "patching_rect": [
+            25,
+            2600,
+            490,
+            100
+          ],
+          "varname": "api_prompt_a",
+          "outputmode": 1,
+          "keymode": 0,
+          "readonly": 0,
+          "numinlets": 1,
+          "numoutlets": 4,
+          "text": "",
+          "presentation": 1,
+          "presentation_rect": [
+            25,
+            985,
+            490,
+            100
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "api_prompt_b_label",
+          "maxclass": "comment",
+          "patching_rect": [
+            535,
+            2560,
+            490,
+            24
+          ],
+          "text": "B Prompt",
+          "presentation": 1,
+          "presentation_rect": [
+            535,
+            955,
+            490,
+            24
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "api_prompt_b",
+          "maxclass": "textedit",
+          "patching_rect": [
+            535,
+            2600,
+            490,
+            100
+          ],
+          "varname": "api_prompt_b",
+          "outputmode": 1,
+          "keymode": 0,
+          "readonly": 0,
+          "numinlets": 1,
+          "numoutlets": 4,
+          "text": "",
+          "presentation": 1,
+          "presentation_rect": [
+            535,
+            985,
+            490,
+            100
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "generate_prompt_a",
+          "maxclass": "textbutton",
+          "patching_rect": [
+            25,
+            2820,
+            195,
+            28
+          ],
+          "text": "Generate A Prompt",
+          "presentation": 1,
+          "presentation_rect": [
+            25,
+            1105,
+            195,
+            28
+          ],
+          "mode": 0,
+          "numoutlets": 3,
+          "outlettype": [
+            "bang",
+            "",
+            "int"
+          ],
+          "texton": "Generate A Prompt",
+          "active": 1,
+          "ignoreclick": 0,
+          "outputmode": 0,
+          "numinlets": 1
+        }
+      },
+      {
+        "box": {
+          "id": "generate_prompt_a_trigger",
+          "maxclass": "newobj",
+          "patching_rect": [
+            25,
+            2860,
+            35,
+            22
+          ],
+          "text": "t b"
+        }
+      },
+      {
+        "box": {
+          "id": "generate_prompt_a_msg",
+          "maxclass": "message",
+          "patching_rect": [
+            100,
+            2860,
+            160,
+            22
+          ],
+          "text": "generate prompta"
         }
       }
     ],
@@ -3383,35 +3493,11 @@
       {
         "patchline": {
           "source": [
-            "set_prompt",
-            0
-          ],
-          "destination": [
-            "prompt",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "source": [
             "session",
             2
           ],
           "destination": [
             "record_route",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "source": [
-            "record_route",
-            0
-          ],
-          "destination": [
-            "set_prompt",
             0
           ]
         }
@@ -4096,6 +4182,66 @@
           ],
           "destination": [
             "outR",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "oscroute",
+            16
+          ],
+          "destination": [
+            "session_backendprompta",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "session_backendprompta",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "generate_prompt_a",
+            0
+          ],
+          "destination": [
+            "generate_prompt_a_trigger",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "generate_prompt_a_trigger",
+            0
+          ],
+          "destination": [
+            "generate_prompt_a_msg",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "generate_prompt_a_msg",
+            0
+          ],
+          "destination": [
+            "session",
             0
           ]
         }
