@@ -51,10 +51,10 @@
           "text": "A Third Presence",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            18,
-            260,
-            28
+            24,
+            16,
+            264,
+            32
           ],
           "fontsize": 20
         }
@@ -146,9 +146,9 @@
           "text": "Participant A",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            110,
-            490,
+            24,
+            112,
+            496,
             24
           ]
         }
@@ -166,9 +166,9 @@
           "text": "Attention",
           "presentation": 1,
           "presentation_rect": [
-            25,
+            24,
             144,
-            75,
+            80,
             24
           ]
         }
@@ -185,9 +185,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            105,
+            104,
             144,
-            65,
+            64,
             24
           ]
         }
@@ -205,9 +205,9 @@
           "text": "Meditation",
           "presentation": 1,
           "presentation_rect": [
-            190,
+            184,
             144,
-            80,
+            88,
             24
           ]
         }
@@ -224,9 +224,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            275,
+            272,
             144,
-            65,
+            64,
             24
           ]
         }
@@ -246,7 +246,7 @@
           "presentation_rect": [
             360,
             144,
-            55,
+            56,
             24
           ]
         }
@@ -263,9 +263,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            420,
+            416,
             144,
-            65,
+            64,
             24
           ]
         }
@@ -283,9 +283,9 @@
           "text": "Participant B",
           "presentation": 1,
           "presentation_rect": [
-            545,
-            110,
-            500,
+            552,
+            112,
+            496,
             24
           ]
         }
@@ -303,9 +303,9 @@
           "text": "Attention",
           "presentation": 1,
           "presentation_rect": [
-            545,
+            552,
             144,
-            75,
+            80,
             24
           ]
         }
@@ -322,9 +322,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            625,
+            632,
             144,
-            65,
+            64,
             24
           ]
         }
@@ -342,9 +342,9 @@
           "text": "Meditation",
           "presentation": 1,
           "presentation_rect": [
-            710,
+            712,
             144,
-            80,
+            88,
             24
           ]
         }
@@ -361,9 +361,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            795,
+            800,
             144,
-            65,
+            64,
             24
           ]
         }
@@ -381,9 +381,9 @@
           "text": "Signal",
           "presentation": 1,
           "presentation_rect": [
-            880,
+            888,
             144,
-            55,
+            56,
             24
           ]
         }
@@ -400,9 +400,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            940,
+            944,
             144,
-            65,
+            64,
             24
           ]
         }
@@ -420,9 +420,9 @@
           "text": "Position",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            300,
-            85,
+            24,
+            304,
+            80,
             24
           ]
         }
@@ -439,9 +439,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            580,
-            300,
-            75,
+            488,
+            304,
+            64,
             24
           ]
         }
@@ -460,9 +460,9 @@
           "floatoutput": 1,
           "presentation": 1,
           "presentation_rect": [
-            115,
-            300,
-            450,
+            112,
+            304,
+            360,
             24
           ]
         }
@@ -873,10 +873,10 @@
           "text": "",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            377,
-            1020,
-            28
+            24,
+            384,
+            1024,
+            24
           ]
         }
       },
@@ -906,10 +906,10 @@
           "text": "START",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            340,
-            80,
-            28
+            24,
+            344,
+            244,
+            32
           ],
           "mode": 0,
           "texton": "START",
@@ -965,10 +965,10 @@
           "text": "STOP",
           "presentation": 1,
           "presentation_rect": [
-            120,
-            340,
-            80,
-            28
+            284,
+            344,
+            244,
+            32
           ],
           "mode": 0,
           "texton": "STOP",
@@ -1024,10 +1024,10 @@
           "text": "Reload Audio",
           "presentation": 1,
           "presentation_rect": [
-            220,
-            340,
-            150,
-            28
+            544,
+            344,
+            244,
+            32
           ],
           "mode": 0,
           "texton": "Reload Audio",
@@ -1083,10 +1083,10 @@
           "text": "Choose Audio Folder",
           "presentation": 1,
           "presentation_rect": [
-            385,
-            340,
-            190,
-            28
+            804,
+            344,
+            244,
+            32
           ],
           "mode": 0,
           "texton": "Choose Audio Folder",
@@ -1155,9 +1155,9 @@
           "text": "Volume",
           "presentation": 1,
           "presentation_rect": [
-            700,
-            300,
-            80,
+            568,
+            304,
+            72,
             24
           ]
         }
@@ -1176,9 +1176,9 @@
           "maximum": 1.0,
           "presentation": 1,
           "presentation_rect": [
-            785,
-            300,
-            75,
+            648,
+            304,
+            64,
             24
           ]
         }
@@ -1276,8 +1276,8 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            975,
-            294,
+            884,
+            300,
             32,
             32
           ]
@@ -1296,9 +1296,9 @@
           "text": "Audio",
           "presentation": 1,
           "presentation_rect": [
-            905,
-            300,
-            60,
+            804,
+            304,
+            64,
             24
           ]
         }
@@ -1416,10 +1416,10 @@
           "text": "Waiting for receiver",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            212,
-            490,
-            34
+            24,
+            216,
+            496,
+            32
           ],
           "ignoreclick": 1
         }
@@ -1504,10 +1504,10 @@
           "text": "Waiting for receiver",
           "presentation": 1,
           "presentation_rect": [
-            545,
-            212,
-            500,
-            34
+            552,
+            216,
+            496,
+            32
           ],
           "ignoreclick": 1
         }
@@ -1538,9 +1538,9 @@
           "text": "Manual Input",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            520,
-            145,
+            24,
+            528,
+            244,
             24
           ]
         }
@@ -1578,10 +1578,10 @@
           "text": "Record A",
           "presentation": 1,
           "presentation_rect": [
-            180,
-            518,
-            105,
-            28
+            284,
+            524,
+            244,
+            32
           ],
           "mode": 0,
           "texton": "Record A",
@@ -1637,10 +1637,10 @@
           "text": "Record B",
           "presentation": 1,
           "presentation_rect": [
-            300,
-            518,
-            105,
-            28
+            544,
+            524,
+            244,
+            32
           ],
           "mode": 0,
           "texton": "Record B",
@@ -1696,10 +1696,10 @@
           "text": "Stop Recording",
           "presentation": 1,
           "presentation_rect": [
-            420,
-            518,
-            155,
-            28
+            804,
+            524,
+            244,
+            32
           ],
           "mode": 0,
           "texton": "Stop Recording",
@@ -1755,10 +1755,10 @@
           "text": "Ready. Select the microphone in Max Audio Status.",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            558,
-            1020,
-            34
+            544,
+            568,
+            504,
+            32
           ]
         }
       },
@@ -1788,9 +1788,9 @@
           "text": "Mic Input",
           "presentation": 1,
           "presentation_rect": [
-            650,
-            520,
-            80,
+            24,
+            568,
+            112,
             24
           ]
         }
@@ -1807,9 +1807,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            740,
-            520,
-            160,
+            152,
+            568,
+            368,
             24
           ]
         }
@@ -1933,10 +1933,10 @@
           "annotation": "Select Participant A receiver. Python confirms the assignment.",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            178,
-            490,
-            26
+            24,
+            176,
+            496,
+            32
           ]
         }
       },
@@ -1993,10 +1993,10 @@
           "annotation": "Select Participant B receiver. Python confirms the assignment.",
           "presentation": 1,
           "presentation_rect": [
-            545,
-            178,
-            500,
-            26
+            552,
+            176,
+            496,
+            32
           ]
         }
       },
@@ -2069,10 +2069,10 @@
           "text": "Refresh Receivers",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            254,
-            180,
-            28
+            24,
+            256,
+            244,
+            32
           ],
           "active": 1,
           "ignoreclick": 0,
@@ -2123,10 +2123,10 @@
           "text": "Click Start System, then Refresh Receivers.",
           "presentation": 1,
           "presentation_rect": [
-            400,
-            254,
-            645,
-            34
+            544,
+            260,
+            504,
+            32
           ]
         }
       },
@@ -2143,10 +2143,10 @@
           "text": "Start System",
           "presentation": 1,
           "presentation_rect": [
-            220,
-            254,
-            160,
-            28
+            284,
+            256,
+            244,
+            32
           ],
           "mode": 0,
           "numoutlets": 3,
@@ -2201,10 +2201,10 @@
           "text": "Generate Prompt",
           "presentation": 1,
           "presentation_rect": [
-            910,
-            603,
-            135,
-            28
+            888,
+            612,
+            160,
+            32
           ],
           "mode": 0,
           "numoutlets": 3,
@@ -2259,10 +2259,10 @@
           "text": "Generate Audio",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            735,
-            170,
-            28
+            24,
+            748,
+            244,
+            32
           ],
           "mode": 0,
           "numoutlets": 3,
@@ -2503,9 +2503,9 @@
           "text": "A Prompt",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            605,
-            250,
+            24,
+            616,
+            320,
             24
           ]
         }
@@ -2529,9 +2529,9 @@
           "text": "",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            638,
-            490,
+            24,
+            652,
+            496,
             80
           ]
         }
@@ -2549,9 +2549,9 @@
           "text": "B Prompt",
           "presentation": 1,
           "presentation_rect": [
-            545,
-            605,
-            250,
+            552,
+            616,
+            320,
             24
           ]
         }
@@ -2575,9 +2575,9 @@
           "text": "",
           "presentation": 1,
           "presentation_rect": [
-            545,
-            638,
-            500,
+            552,
+            652,
+            496,
             80
           ]
         }
@@ -2595,10 +2595,10 @@
           "text": "Generate Prompt",
           "presentation": 1,
           "presentation_rect": [
-            380,
-            603,
-            135,
-            28
+            360,
+            612,
+            160,
+            32
           ],
           "mode": 0,
           "numoutlets": 3,
@@ -2770,9 +2770,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            300,
+            304,
             20,
-            220,
+            208,
             24
           ]
         }
@@ -2803,9 +2803,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            530,
+            528,
             20,
-            200,
+            192,
             24
           ]
         }
@@ -2836,10 +2836,10 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            25,
-            58,
-            1020,
-            42
+            24,
+            56,
+            1024,
+            40
           ]
         }
       },
@@ -2869,7 +2869,7 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            735,
+            736,
             20,
             80,
             24
@@ -2888,10 +2888,10 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            817,
+            816,
             20,
-            22,
-            22
+            24,
+            24
           ],
           "numinlets": 1,
           "numoutlets": 1
@@ -2936,10 +2936,10 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            855,
-            18,
-            190,
-            28
+            856,
+            16,
+            192,
+            32
           ],
           "mode": 0,
           "numinlets": 1,
@@ -3001,10 +3001,10 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            25,
-            420,
-            190,
-            28
+            24,
+            428,
+            244,
+            24
           ]
         }
       },
@@ -3021,10 +3021,10 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            225,
-            420,
-            205,
-            28
+            284,
+            424,
+            244,
+            32
           ],
           "mode": 0,
           "numinlets": 1,
@@ -3061,7 +3061,7 @@
         "box": {
           "id": "performance_stop",
           "maxclass": "textbutton",
-          "text": "Stop Performance Recording",
+          "text": "Stop Performance",
           "patching_rect": [
             25,
             13350,
@@ -3070,10 +3070,10 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            445,
-            420,
-            265,
-            28
+            544,
+            424,
+            244,
+            32
           ],
           "mode": 0,
           "numinlets": 1,
@@ -3119,10 +3119,10 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            25,
-            458,
-            1020,
-            42
+            24,
+            464,
+            1024,
+            40
           ]
         }
       },
