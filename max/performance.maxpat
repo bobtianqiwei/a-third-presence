@@ -12,7 +12,7 @@
       0,
       0,
       1100,
-      1650
+      820
     ],
     "openinpresentation": 1,
     "default_fontsize": 12,
@@ -29,7 +29,7 @@
             22
           ],
           "text": "performance.maxpat developed by Bob Tianqi Wei",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             8,
@@ -52,10 +52,11 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            38,
-            600,
-            24
-          ]
+            18,
+            260,
+            28
+          ],
+          "fontsize": 20
         }
       },
       {
@@ -69,7 +70,7 @@
             22
           ],
           "text": "EEG and AI as speculative mediators of shared presence.",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             69,
@@ -146,8 +147,8 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            235,
-            200,
+            110,
+            490,
             24
           ]
         }
@@ -166,8 +167,8 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            270,
-            110,
+            144,
+            75,
             24
           ]
         }
@@ -184,9 +185,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            145,
-            270,
-            85,
+            105,
+            144,
+            65,
             24
           ]
         }
@@ -204,9 +205,9 @@
           "text": "Meditation",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            310,
-            110,
+            190,
+            144,
+            80,
             24
           ]
         }
@@ -223,9 +224,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            145,
-            310,
-            85,
+            275,
+            144,
+            65,
             24
           ]
         }
@@ -243,9 +244,9 @@
           "text": "Signal",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            350,
-            110,
+            360,
+            144,
+            55,
             24
           ]
         }
@@ -262,9 +263,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            145,
-            350,
-            85,
+            420,
+            144,
+            65,
             24
           ]
         }
@@ -282,9 +283,9 @@
           "text": "Participant B",
           "presentation": 1,
           "presentation_rect": [
-            615,
-            235,
-            200,
+            545,
+            110,
+            500,
             24
           ]
         }
@@ -302,9 +303,9 @@
           "text": "Attention",
           "presentation": 1,
           "presentation_rect": [
-            615,
-            270,
-            110,
+            545,
+            144,
+            75,
             24
           ]
         }
@@ -321,9 +322,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            735,
-            270,
-            85,
+            625,
+            144,
+            65,
             24
           ]
         }
@@ -341,9 +342,9 @@
           "text": "Meditation",
           "presentation": 1,
           "presentation_rect": [
-            615,
-            310,
-            110,
+            710,
+            144,
+            80,
             24
           ]
         }
@@ -360,9 +361,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            735,
-            310,
-            85,
+            795,
+            144,
+            65,
             24
           ]
         }
@@ -380,9 +381,9 @@
           "text": "Signal",
           "presentation": 1,
           "presentation_rect": [
-            615,
-            350,
-            110,
+            880,
+            144,
+            55,
             24
           ]
         }
@@ -399,9 +400,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            735,
-            350,
-            85,
+            940,
+            144,
+            65,
             24
           ]
         }
@@ -416,12 +417,12 @@
             300,
             22
           ],
-          "text": "Sound Position / OSC Position",
+          "text": "Position",
           "presentation": 1,
           "presentation_rect": [
-            265,
-            240,
+            25,
             300,
+            85,
             24
           ]
         }
@@ -438,9 +439,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            365,
-            271,
-            85,
+            580,
+            300,
+            75,
             24
           ]
         }
@@ -459,9 +460,9 @@
           "floatoutput": 1,
           "presentation": 1,
           "presentation_rect": [
-            265,
-            312,
-            290,
+            115,
+            300,
+            450,
             24
           ]
         }
@@ -516,7 +517,7 @@
             22
           ],
           "text": "Continuous Index",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             575,
@@ -535,7 +536,7 @@
             85,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             602,
@@ -555,7 +556,7 @@
             22
           ],
           "text": "Left Index",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             265,
             575,
@@ -574,7 +575,7 @@
             85,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             265,
             602,
@@ -594,7 +595,7 @@
             22
           ],
           "text": "Right Index",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             480,
             575,
@@ -613,7 +614,7 @@
             85,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             480,
             602,
@@ -633,7 +634,7 @@
             22
           ],
           "text": "Crossfade",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             690,
             575,
@@ -652,7 +653,7 @@
             85,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             690,
             602,
@@ -672,7 +673,7 @@
             22
           ],
           "text": "Audio Files",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             635,
@@ -691,7 +692,7 @@
             85,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             662,
@@ -711,7 +712,7 @@
             22
           ],
           "text": "Current Sound Pair",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             265,
             635,
@@ -731,7 +732,7 @@
             22
           ],
           "text": "",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             265,
             665,
@@ -764,7 +765,7 @@
             22
           ],
           "text": "Audio Folder",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             723,
@@ -784,7 +785,7 @@
             22
           ],
           "text": "",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             753,
@@ -817,7 +818,7 @@
             22
           ],
           "text": "OSC Status",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             800,
@@ -837,7 +838,7 @@
             22
           ],
           "text": "",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             140,
             800,
@@ -873,9 +874,9 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            838,
-            780,
-            24
+            377,
+            1020,
+            28
           ]
         }
       },
@@ -906,9 +907,9 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            520,
+            340,
             80,
-            25
+            28
           ],
           "mode": 0,
           "texton": "START",
@@ -964,10 +965,10 @@
           "text": "STOP",
           "presentation": 1,
           "presentation_rect": [
-            125,
-            520,
+            120,
+            340,
             80,
-            25
+            28
           ],
           "mode": 0,
           "texton": "STOP",
@@ -1023,10 +1024,10 @@
           "text": "Reload Audio",
           "presentation": 1,
           "presentation_rect": [
-            235,
-            520,
-            165,
-            25
+            220,
+            340,
+            150,
+            28
           ],
           "mode": 0,
           "texton": "Reload Audio",
@@ -1082,10 +1083,10 @@
           "text": "Choose Audio Folder",
           "presentation": 1,
           "presentation_rect": [
-            410,
-            520,
-            165,
-            25
+            385,
+            340,
+            190,
+            28
           ],
           "mode": 0,
           "texton": "Choose Audio Folder",
@@ -1151,12 +1152,12 @@
             230,
             22
           ],
-          "text": "Master Volume (0 to 1)",
+          "text": "Volume",
           "presentation": 1,
           "presentation_rect": [
-            580,
-            520,
-            230,
+            700,
+            300,
+            80,
             24
           ]
         }
@@ -1175,9 +1176,9 @@
           "maximum": 1.0,
           "presentation": 1,
           "presentation_rect": [
-            690,
-            552,
-            85,
+            785,
+            300,
+            75,
             24
           ]
         }
@@ -1275,10 +1276,10 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            740,
-            660,
-            45,
-            45
+            975,
+            294,
+            32,
+            32
           ]
         }
       },
@@ -1292,12 +1293,12 @@
             70,
             22
           ],
-          "text": "DSP",
+          "text": "Audio",
           "presentation": 1,
           "presentation_rect": [
-            740,
-            635,
-            70,
+            905,
+            300,
+            60,
             24
           ]
         }
@@ -1339,7 +1340,7 @@
             22
           ],
           "text": "All audio shares one timeline. Position changes gains; STOP fades to silence.",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             875,
@@ -1359,7 +1360,7 @@
             24
           ],
           "text": "Participant A EEG Receiver",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             390,
@@ -1379,7 +1380,7 @@
             24
           ],
           "text": "Not assigned",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             450,
@@ -1416,9 +1417,9 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            477,
-            350,
-            24
+            212,
+            490,
+            34
           ],
           "ignoreclick": 1
         }
@@ -1447,7 +1448,7 @@
             24
           ],
           "text": "Participant B EEG Receiver",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             455,
             390,
@@ -1467,7 +1468,7 @@
             24
           ],
           "text": "Not assigned",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             455,
             450,
@@ -1503,10 +1504,10 @@
           "text": "Waiting for receiver",
           "presentation": 1,
           "presentation_rect": [
-            455,
-            477,
-            350,
-            24
+            545,
+            212,
+            500,
+            34
           ],
           "ignoreclick": 1
         }
@@ -1534,12 +1535,12 @@
             400,
             24
           ],
-          "text": "Record Input Audio",
+          "text": "Manual Input",
           "presentation": 1,
           "presentation_rect": [
             25,
-            915,
-            400,
+            520,
+            145,
             24
           ]
         }
@@ -1555,7 +1556,7 @@
             24
           ],
           "text": "Input 1 / mono / 45 s maximum. Recording replaces the selected A.wav or B.wav.",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             945,
@@ -1577,10 +1578,10 @@
           "text": "Record A",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            980,
-            120,
-            26
+            180,
+            518,
+            105,
+            28
           ],
           "mode": 0,
           "texton": "Record A",
@@ -1636,10 +1637,10 @@
           "text": "Record B",
           "presentation": 1,
           "presentation_rect": [
-            160,
-            980,
-            120,
-            26
+            300,
+            518,
+            105,
+            28
           ],
           "mode": 0,
           "texton": "Record B",
@@ -1695,10 +1696,10 @@
           "text": "Stop Recording",
           "presentation": 1,
           "presentation_rect": [
-            295,
-            980,
-            170,
-            26
+            420,
+            518,
+            155,
+            28
           ],
           "mode": 0,
           "texton": "Stop Recording",
@@ -1755,9 +1756,9 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            1018,
-            780,
-            48
+            558,
+            1020,
+            34
           ]
         }
       },
@@ -1787,9 +1788,9 @@
           "text": "Mic Input",
           "presentation": 1,
           "presentation_rect": [
-            585,
-            980,
-            100,
+            650,
+            520,
+            80,
             24
           ]
         }
@@ -1806,9 +1807,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            690,
-            980,
-            115,
+            740,
+            520,
+            160,
             24
           ]
         }
@@ -1933,8 +1934,8 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            417,
-            350,
+            178,
+            490,
             26
           ]
         }
@@ -1992,9 +1993,9 @@
           "annotation": "Select Participant B receiver. Python confirms the assignment.",
           "presentation": 1,
           "presentation_rect": [
-            455,
-            417,
-            350,
+            545,
+            178,
+            500,
             26
           ]
         }
@@ -2068,10 +2069,10 @@
           "text": "Refresh Receivers",
           "presentation": 1,
           "presentation_rect": [
-            835,
-            417,
-            205,
-            27
+            25,
+            254,
+            180,
+            28
           ],
           "active": 1,
           "ignoreclick": 0,
@@ -2122,10 +2123,10 @@
           "text": "Click Start System, then Refresh Receivers.",
           "presentation": 1,
           "presentation_rect": [
-            835,
-            450,
-            210,
-            65
+            400,
+            254,
+            645,
+            34
           ]
         }
       },
@@ -2142,9 +2143,9 @@
           "text": "Start System",
           "presentation": 1,
           "presentation_rect": [
-            835,
-            520,
-            205,
+            220,
+            254,
+            160,
             28
           ],
           "mode": 0,
@@ -2197,12 +2198,12 @@
             190,
             28
           ],
-          "text": "Generate B Prompt",
+          "text": "Generate Prompt",
           "presentation": 1,
           "presentation_rect": [
-            245,
-            1225,
-            195,
+            910,
+            603,
+            135,
             28
           ],
           "mode": 0,
@@ -2258,9 +2259,9 @@
           "text": "Generate Audio",
           "presentation": 1,
           "presentation_rect": [
-            465,
-            1225,
-            195,
+            25,
+            735,
+            170,
             28
           ],
           "mode": 0,
@@ -2313,13 +2314,13 @@
             350,
             65
           ],
-          "text": "Click Start System to connect the local Python controller.",
-          "presentation": 1,
+          "text": "Local controller status.",
+          "presentation": 0,
           "presentation_rect": [
-            25,
-            1265,
-            1000,
-            65
+            215,
+            732,
+            830,
+            48
           ]
         }
       },
@@ -2412,7 +2413,7 @@
             600,
             24
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             25,
             1365,
@@ -2503,8 +2504,8 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            1075,
-            490,
+            605,
+            250,
             24
           ]
         }
@@ -2529,9 +2530,9 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            1105,
+            638,
             490,
-            100
+            80
           ]
         }
       },
@@ -2548,9 +2549,9 @@
           "text": "B Prompt",
           "presentation": 1,
           "presentation_rect": [
-            535,
-            1075,
-            490,
+            545,
+            605,
+            250,
             24
           ]
         }
@@ -2574,10 +2575,10 @@
           "text": "",
           "presentation": 1,
           "presentation_rect": [
-            535,
-            1105,
-            490,
-            100
+            545,
+            638,
+            500,
+            80
           ]
         }
       },
@@ -2591,12 +2592,12 @@
             195,
             28
           ],
-          "text": "Generate A Prompt",
+          "text": "Generate Prompt",
           "presentation": 1,
           "presentation_rect": [
-            25,
-            1225,
-            195,
+            380,
+            603,
+            135,
             28
           ],
           "mode": 0,
@@ -2769,9 +2770,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            25,
-            110,
             300,
+            20,
+            220,
             24
           ]
         }
@@ -2802,8 +2803,8 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            350,
-            110,
+            530,
+            20,
             200,
             24
           ]
@@ -2826,7 +2827,7 @@
         "box": {
           "id": "auto_progress_label",
           "maxclass": "comment",
-          "text": "Automatic sessions wait for stable EEG. Sound mappings are artistic, not emotion detection.",
+          "text": "Waiting for stable EEG.",
           "patching_rect": [
             25,
             6640,
@@ -2836,9 +2837,9 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            145,
-            1000,
-            65
+            58,
+            1020,
+            42
           ]
         }
       },
@@ -2868,9 +2869,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            660,
-            110,
-            110,
+            735,
+            20,
+            80,
             24
           ]
         }
@@ -2887,10 +2888,10 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            780,
-            110,
-            24,
-            24
+            817,
+            20,
+            22,
+            22
           ],
           "numinlets": 1,
           "numoutlets": 1
@@ -2935,9 +2936,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            835,
-            110,
-            205,
+            855,
+            18,
+            190,
             28
           ],
           "mode": 0,
@@ -3001,9 +3002,9 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            1420,
-            350,
-            24
+            420,
+            190,
+            28
           ]
         }
       },
@@ -3020,8 +3021,8 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            25,
-            1455,
+            225,
+            420,
             205,
             28
           ],
@@ -3069,8 +3070,8 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            245,
-            1455,
+            445,
+            420,
             265,
             28
           ],
@@ -3119,9 +3120,9 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            1495,
-            1000,
-            65
+            458,
+            1020,
+            42
           ]
         }
       },
