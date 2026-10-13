@@ -10,6 +10,10 @@ audio/.flowedit-*/
 audio/generated.previous/
 audio/prompt.json
 audio/prompt-edits.json
+audio/sessions/
+audio/history.json
+audio/history.tmp
+audio/performances/*.wav
 audio/*.log
 *.key
 .env

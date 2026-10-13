@@ -2,7 +2,7 @@
 // Every play~ reader uses the same audio-rate timeline; position changes only gains.
 autowatch = 1;
 inlets = 1;
-outlets = 7;
+outlets = 10;
 var files = [], channels = [], lengths = [], folderPath = '', ready = false;
 var target = 0.5, current = 0, voices = [], duration = 0;
 var playing = false, lastOSC = 0;
@@ -13,25 +13,28 @@ var reloadTask = new Task(loadFolder, this);
 var loadAttempts = 0, pendingStart = false;
 var initializeTask = new Task(loadbang, this);
 initializeTask.schedule(100);
+var automaticMode = false, activeSide = 0, incoming = null, transition = null, queuedFolder = '';
+var autoTask = new Task(checkAutomatic, this);
 
 function display(name, value) { outlet(4, name, value); }
-function voiceMessage(index, name, value) {
-    outlet(3, 'target', index + 1);
-    outlet(3, name, value);
+function voiceMessage(index, name, value, side) {
+    var output = (side === undefined ? activeSide : side) === 1 ? 8 : 3;
+    outlet(output, 'target', index + 1);
+    outlet(output, name, value);
 }
 function clearVoices() { voices = []; }
 function buildVoices() {
     voices = [];
-    outlet(3, 'voices', files.length);
+    outlet(activeSide === 1 ? 8 : 3, 'voices', files.length);
     for (var i = 0; i < files.length; i++) {
-        voiceMessage(i, 'setbuf', bank + '.' + (i + 1));
+        voiceMessage(i, 'setbuf', bank + (activeSide === 1 ? '_auto' : '') + '.' + (i + 1));
         voiceMessage(i, 'mono', channels[i] === 1 ? 1 : 0);
         voiceMessage(i, 'duration', lengths[i]);
         voiceMessage(i, 'gain', 0);
         voices.push({gain: 0});
     }
-    outlet(1, duration);
-    outlet(2, 0);
+    outlet(activeSide === 1 ? 9 : 1, duration);
+    if (!playing) outlet(2, 0);
 }
 function muteVoices() {
     for (var i = 0; i < voices.length; i++) {
@@ -61,6 +64,10 @@ function loadbang() {
 }
 function folder(path) { folderPath = String(path); display('folder', folderPath); reload(); }
 function reload() {
+    autoTask.cancel();
+    incoming = null;
+    queuedFolder = '';
+    if (transition) finishTransition();
     if (!folderPath) {
         folderPath = projectRoot(this.patcher.filepath) + 'audio/generated/';
         display('folder', folderPath);
@@ -74,7 +81,7 @@ function reload() {
 }
 function loadFolder() {
     clearVoices();
-    outlet(5, 'clear');
+    outlet(activeSide === 1 ? 7 : 5, 'clear');
     files = [];
     var f = new Folder(folderPath);
     while (!f.end) {
@@ -93,7 +100,7 @@ function loadFolder() {
         return;
     }
     for (var i = 0; i < files.length; i++)
-        outlet(5, 'append', folderPath.replace(/\/$/, '') + '/' + files[i]);
+        outlet(activeSide === 1 ? 7 : 5, 'append', folderPath.replace(/\/$/, '') + '/' + files[i]);
     loadAttempts = 0;
     loadTask.schedule(100);
 }
@@ -124,11 +131,66 @@ function checkLoaded() {
     if (pendingStart) { pendingStart = false; start(); }
 }
 function position(value) {
+    if (automaticMode) return;
     target = Math.max(0, Math.min(1, value));
     display('position', target);
     lastOSC = Date.now();
 }
 function manual(value) { target = Math.max(0, Math.min(1, value)); display('position', target); }
+function automatic(value) {
+    automaticMode = !!value;
+    if (!automaticMode) {
+        autoTask.cancel(); incoming = null; queuedFolder = '';
+        if (transition) finishTransition();
+    }
+}
+function autoposition(value) {
+    if (automaticMode) { manual(value); lastOSC = Date.now(); }
+}
+function autoplay(path) {
+    automaticMode = true;
+    if (incoming || transition) { queuedFolder = String(path); return; }
+    loadTask.cancel(); reloadTask.cancel();
+    var names = [], f = new Folder(String(path));
+    while (!f.end) { if (/\.wav$/i.test(f.filename)) names.push(f.filename); f.next(); }
+    f.close(); names.sort();
+    if (!names.length) { display('audio', 'Automatic sound folder has no WAV files.'); return; }
+    var side = ready ? 1 - activeSide : activeSide;
+    incoming = {side: side, path: String(path), files: names, attempts: 0};
+    outlet(side === 1 ? 7 : 5, 'clear');
+    for (var i = 0; i < names.length; i++)
+        outlet(side === 1 ? 7 : 5, 'append', String(path).replace(/\/$/, '') + '/' + names[i]);
+    autoTask.schedule(100);
+}
+function checkAutomatic() {
+    if (!incoming) return;
+    var next = incoming, nextChannels = [], nextLengths = [], nextDuration = 0;
+    for (var i = 0; i < next.files.length; i++) {
+        var b = new Buffer(bank + (next.side === 1 ? '_auto' : '') + '.' + (i + 1));
+        if (b.framecount() <= 0) {
+            if (++next.attempts < 300) autoTask.schedule(100);
+            else { incoming = null; display('audio', 'Automatic audio loading failed. Current sound preserved.'); }
+            return;
+        }
+        nextChannels.push(b.channelcount()); nextLengths.push(b.length());
+        nextDuration = Math.max(nextDuration, b.length());
+    }
+    transition = playing ? {side: activeSide, voices: voices, began: Date.now()} : null;
+    activeSide = next.side; files = next.files; channels = nextChannels; lengths = nextLengths;
+    folderPath = next.path; duration = nextDuration; incoming = null; ready = true;
+    current = 0;
+    buildVoices();
+    display('folder', folderPath); display('count', files.length);
+    if (!playing) start();
+    showPair();
+    display('audio', 'Playing automatic sound');
+}
+function finishTransition() {
+    for (var i = 0; i < transition.voices.length; i++) voiceMessage(i, 'gain', 0, transition.side);
+    transition = null;
+    outlet(0, 1000 / duration);
+    if (queuedFolder) { var path = queuedFolder; queuedFolder = ''; autoplay(path); }
+}
 function start() {
     if (!ready) { pendingStart = true; reload(); display('audio', 'Loading audio. If no files exist, record A/B and click Generate Audio first.'); return; }
     if (!playing) { outlet(2, 0); outlet(0, 1000 / duration); }
@@ -139,6 +201,7 @@ function start() {
     display('audio', 'Playing');
 }
 function stop() {
+    if (transition) finishTransition();
     playing = false;
     outlet(0, 0);
     muteVoices();
@@ -146,22 +209,29 @@ function stop() {
     display('audio', 'Stopped');
 }
 function showPair() {
-    var left = Math.min(files.length - 2, Math.floor(current));
-    var right = left + 1;
+    var left = files.length === 1 ? 0 : Math.min(files.length - 2, Math.floor(current));
+    var right = files.length === 1 ? 0 : left + 1;
     var x = Math.max(0, Math.min(1, current - left));
     display('continuous', current);
     display('left', left);
     display('right', right);
     display('crossfade', x);
     display('pair', ('0' + left).slice(-2) + ' <-> ' + ('0' + right).slice(-2));
+    var blend = transition ? Math.min(1, (Date.now() - transition.began) / 2000) : 1;
+    if (transition) {
+        for (var j = 0; j < transition.voices.length; j++)
+            voiceMessage(j, 'gain', transition.voices[j].gain * Math.cos(blend * Math.PI / 2), transition.side);
+    }
     for (var i = 0; i < voices.length; i++) {
         var value = !playing ? 0 : (i === left ? Math.cos(x * Math.PI / 2) :
                     (i === right ? Math.sin(x * Math.PI / 2) : 0));
+        value *= Math.sin(blend * Math.PI / 2);
         if (Math.abs(value - voices[i].gain) > 0.000001) {
             voiceMessage(i, 'gain', value);
             voices[i].gain = value;
         }
     }
+    if (transition && blend === 1) finishTransition();
 }
 function tick() {
     display('status', lastOSC && Date.now() - lastOSC < 3000 ? 'OSC receiving' : 'OSC idle / no recent position');
@@ -172,6 +242,7 @@ function tick() {
 }
 function notifydeleted() {
     initializeTask.cancel();
+    autoTask.cancel();
     ticker.cancel(); loadTask.cancel(); reloadTask.cancel();
     clearVoices();
 }

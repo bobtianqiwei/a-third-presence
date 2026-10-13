@@ -34,6 +34,7 @@ class Participant:
                            alpha=0, beta=0, theta=0)
         self.connected = False
         self.last_signal = self.last_attention = 0.0
+        self.last_meditation = 0.0
         self.valid_attention = False
         self.status = 'Waiting for receiver'
 
@@ -54,6 +55,8 @@ class Participant:
                     if name == 'attention':
                         self.last_attention = now
                         self.valid_attention = True
+                    else:
+                        self.last_meditation = now
             for name, lo, hi in [('alpha', 'low_alpha', 'high_alpha'),
                                  ('beta', 'low_beta', 'high_beta')]:
                 if lo in packet and hi in packet:
@@ -237,12 +240,14 @@ def main():
     args = arg.parse_args()
     manager = ReceiverManager(args.simulate)
     client = SimpleUDPClient(OSC_HOST, OSC_PORT)
+    automatic_client = SimpleUDPClient(OSC_HOST, 9002)
     try:
         controls = create_control_server(manager)
     except OSError as error:
         print(f'Cannot listen for Max controls on {OSC_HOST}:{CONTROL_PORT}: {error}', file=sys.stderr)
         print('Close the other EEG bridge or free control port 9001, then restart.', file=sys.stderr)
         client.close()
+        automatic_client.close()
         return 1
     if args.simulate:
         print('SIMULATION: synthetic data, no EEG hardware used.')
@@ -276,6 +281,10 @@ def main():
                 manager.request_scan = False
                 manager.update_available(scan_ports())
             snapshots = [person.snapshot() for person in manager.people]
+            for label, person, (values, usable, _) in zip('ab', manager.people, snapshots):
+                automatic_client.send_message('/session/eeg/sample',
+                    [label, int(usable and now - person.last_meditation <= STALE_SECONDS),
+                     values['attention'] / 100, values['meditation'] / 100])
             usable_a, usable_b = snapshots[0][1], snapshots[1][1]
             mode = current_mode(usable_a, usable_b)
             position = next_position(position, snapshots[0][0]['attention'],
@@ -310,6 +319,7 @@ def main():
     finally:
         controls.server_close()
         client.close()
+        automatic_client.close()
         manager.close()
     return 0
 

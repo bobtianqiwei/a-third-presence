@@ -12,7 +12,7 @@
       0,
       0,
       1100,
-      1450
+      1650
     ],
     "openinpresentation": 1,
     "default_fontsize": 12,
@@ -101,7 +101,8 @@
             1650,
             22
           ],
-          "text": "route /sound/position /eeg/a/attention /eeg/a/meditation /eeg/a/signal /eeg/b/attention /eeg/b/meditation /eeg/b/signal /eeg/a/device /eeg/b/device /eeg/a/status /eeg/b/status /eeg/devices /eeg/control/status /session/status /session/prompt /session/complete /session/prompt_a"
+          "text": "route /sound/position /eeg/a/attention /eeg/a/meditation /eeg/a/signal /eeg/b/attention /eeg/b/meditation /eeg/b/signal /eeg/a/device /eeg/b/device /eeg/a/status /eeg/b/status /eeg/devices /eeg/control/status /session/status /session/prompt /session/complete /session/prompt_a /session/mode /session/countdown /session/progress /session/play /session/position /session/automatic",
+          "numoutlets": 24
         }
       },
       {
@@ -114,7 +115,8 @@
             190,
             22
           ],
-          "text": "js navigation.js #0"
+          "text": "js navigation.js #0",
+          "numoutlets": 10
         }
       },
       {
@@ -144,7 +146,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            115,
+            235,
             200,
             24
           ]
@@ -164,7 +166,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            150,
+            270,
             110,
             24
           ]
@@ -183,7 +185,7 @@
           "presentation": 1,
           "presentation_rect": [
             145,
-            150,
+            270,
             85,
             24
           ]
@@ -203,7 +205,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            190,
+            310,
             110,
             24
           ]
@@ -222,7 +224,7 @@
           "presentation": 1,
           "presentation_rect": [
             145,
-            190,
+            310,
             85,
             24
           ]
@@ -242,7 +244,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            230,
+            350,
             110,
             24
           ]
@@ -261,7 +263,7 @@
           "presentation": 1,
           "presentation_rect": [
             145,
-            230,
+            350,
             85,
             24
           ]
@@ -281,7 +283,7 @@
           "presentation": 1,
           "presentation_rect": [
             615,
-            115,
+            235,
             200,
             24
           ]
@@ -301,7 +303,7 @@
           "presentation": 1,
           "presentation_rect": [
             615,
-            150,
+            270,
             110,
             24
           ]
@@ -320,7 +322,7 @@
           "presentation": 1,
           "presentation_rect": [
             735,
-            150,
+            270,
             85,
             24
           ]
@@ -340,7 +342,7 @@
           "presentation": 1,
           "presentation_rect": [
             615,
-            190,
+            310,
             110,
             24
           ]
@@ -359,7 +361,7 @@
           "presentation": 1,
           "presentation_rect": [
             735,
-            190,
+            310,
             85,
             24
           ]
@@ -379,7 +381,7 @@
           "presentation": 1,
           "presentation_rect": [
             615,
-            230,
+            350,
             110,
             24
           ]
@@ -398,7 +400,7 @@
           "presentation": 1,
           "presentation_rect": [
             735,
-            230,
+            350,
             85,
             24
           ]
@@ -418,7 +420,7 @@
           "presentation": 1,
           "presentation_rect": [
             265,
-            120,
+            240,
             300,
             24
           ]
@@ -437,7 +439,7 @@
           "presentation": 1,
           "presentation_rect": [
             365,
-            151,
+            271,
             85,
             24
           ]
@@ -458,7 +460,7 @@
           "presentation": 1,
           "presentation_rect": [
             265,
-            192,
+            312,
             290,
             24
           ]
@@ -517,7 +519,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            455,
+            575,
             190,
             24
           ]
@@ -536,7 +538,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            482,
+            602,
             85,
             24
           ]
@@ -556,7 +558,7 @@
           "presentation": 1,
           "presentation_rect": [
             265,
-            455,
+            575,
             190,
             24
           ]
@@ -575,7 +577,7 @@
           "presentation": 1,
           "presentation_rect": [
             265,
-            482,
+            602,
             85,
             24
           ]
@@ -595,7 +597,7 @@
           "presentation": 1,
           "presentation_rect": [
             480,
-            455,
+            575,
             190,
             24
           ]
@@ -614,7 +616,7 @@
           "presentation": 1,
           "presentation_rect": [
             480,
-            482,
+            602,
             85,
             24
           ]
@@ -634,7 +636,7 @@
           "presentation": 1,
           "presentation_rect": [
             690,
-            455,
+            575,
             190,
             24
           ]
@@ -653,7 +655,7 @@
           "presentation": 1,
           "presentation_rect": [
             690,
-            482,
+            602,
             85,
             24
           ]
@@ -673,7 +675,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            515,
+            635,
             190,
             24
           ]
@@ -692,7 +694,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            542,
+            662,
             85,
             24
           ]
@@ -712,7 +714,7 @@
           "presentation": 1,
           "presentation_rect": [
             265,
-            515,
+            635,
             210,
             24
           ]
@@ -732,7 +734,7 @@
           "presentation": 1,
           "presentation_rect": [
             265,
-            545,
+            665,
             240,
             24
           ]
@@ -765,7 +767,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            603,
+            723,
             200,
             24
           ]
@@ -785,7 +787,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            633,
+            753,
             780,
             24
           ]
@@ -818,7 +820,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            680,
+            800,
             200,
             24
           ]
@@ -838,7 +840,7 @@
           "presentation": 1,
           "presentation_rect": [
             140,
-            680,
+            800,
             400,
             24
           ]
@@ -871,7 +873,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            718,
+            838,
             780,
             24
           ]
@@ -904,7 +906,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            400,
+            520,
             80,
             25
           ],
@@ -963,7 +965,7 @@
           "presentation": 1,
           "presentation_rect": [
             125,
-            400,
+            520,
             80,
             25
           ],
@@ -1022,7 +1024,7 @@
           "presentation": 1,
           "presentation_rect": [
             235,
-            400,
+            520,
             165,
             25
           ],
@@ -1081,7 +1083,7 @@
           "presentation": 1,
           "presentation_rect": [
             410,
-            400,
+            520,
             165,
             25
           ],
@@ -1153,7 +1155,7 @@
           "presentation": 1,
           "presentation_rect": [
             580,
-            400,
+            520,
             230,
             24
           ]
@@ -1174,7 +1176,7 @@
           "presentation": 1,
           "presentation_rect": [
             690,
-            432,
+            552,
             85,
             24
           ]
@@ -1274,7 +1276,7 @@
           "presentation": 1,
           "presentation_rect": [
             740,
-            540,
+            660,
             45,
             45
           ]
@@ -1294,7 +1296,7 @@
           "presentation": 1,
           "presentation_rect": [
             740,
-            515,
+            635,
             70,
             24
           ]
@@ -1340,7 +1342,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            755,
+            875,
             790,
             24
           ]
@@ -1360,7 +1362,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            270,
+            390,
             360,
             24
           ]
@@ -1380,7 +1382,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            330,
+            450,
             350,
             24
           ],
@@ -1414,7 +1416,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            357,
+            477,
             350,
             24
           ],
@@ -1448,7 +1450,7 @@
           "presentation": 1,
           "presentation_rect": [
             455,
-            270,
+            390,
             360,
             24
           ]
@@ -1468,7 +1470,7 @@
           "presentation": 1,
           "presentation_rect": [
             455,
-            330,
+            450,
             350,
             24
           ],
@@ -1502,7 +1504,7 @@
           "presentation": 1,
           "presentation_rect": [
             455,
-            357,
+            477,
             350,
             24
           ],
@@ -1536,7 +1538,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            795,
+            915,
             400,
             24
           ]
@@ -1556,7 +1558,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            825,
+            945,
             780,
             24
           ]
@@ -1576,7 +1578,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            860,
+            980,
             120,
             26
           ],
@@ -1635,7 +1637,7 @@
           "presentation": 1,
           "presentation_rect": [
             160,
-            860,
+            980,
             120,
             26
           ],
@@ -1694,7 +1696,7 @@
           "presentation": 1,
           "presentation_rect": [
             295,
-            860,
+            980,
             170,
             26
           ],
@@ -1753,7 +1755,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            898,
+            1018,
             780,
             48
           ]
@@ -1786,7 +1788,7 @@
           "presentation": 1,
           "presentation_rect": [
             585,
-            860,
+            980,
             100,
             24
           ]
@@ -1805,7 +1807,7 @@
           "presentation": 1,
           "presentation_rect": [
             690,
-            860,
+            980,
             115,
             24
           ]
@@ -1834,7 +1836,8 @@
             330,
             22
           ],
-          "text": "route prompt recording dsp backend recordpath prompt_a"
+          "text": "route prompt recording dsp backend recordpath prompt_a mode countdown progress automatic performance",
+          "numoutlets": 12
         }
       },
       {
@@ -1930,7 +1933,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            297,
+            417,
             350,
             26
           ]
@@ -1990,7 +1993,7 @@
           "presentation": 1,
           "presentation_rect": [
             455,
-            297,
+            417,
             350,
             26
           ]
@@ -2066,7 +2069,7 @@
           "presentation": 1,
           "presentation_rect": [
             835,
-            297,
+            417,
             205,
             27
           ],
@@ -2120,7 +2123,7 @@
           "presentation": 1,
           "presentation_rect": [
             835,
-            330,
+            450,
             210,
             65
           ]
@@ -2140,7 +2143,7 @@
           "presentation": 1,
           "presentation_rect": [
             835,
-            400,
+            520,
             205,
             28
           ],
@@ -2198,7 +2201,7 @@
           "presentation": 1,
           "presentation_rect": [
             245,
-            1105,
+            1225,
             195,
             28
           ],
@@ -2256,7 +2259,7 @@
           "presentation": 1,
           "presentation_rect": [
             465,
-            1105,
+            1225,
             195,
             28
           ],
@@ -2314,7 +2317,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            1145,
+            1265,
             1000,
             65
           ]
@@ -2412,7 +2415,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            1245,
+            1365,
             1020,
             24
           ]
@@ -2500,7 +2503,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            955,
+            1075,
             490,
             24
           ]
@@ -2526,7 +2529,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            985,
+            1105,
             490,
             100
           ]
@@ -2546,7 +2549,7 @@
           "presentation": 1,
           "presentation_rect": [
             535,
-            955,
+            1075,
             490,
             24
           ]
@@ -2572,7 +2575,7 @@
           "presentation": 1,
           "presentation_rect": [
             535,
-            985,
+            1105,
             490,
             100
           ]
@@ -2592,7 +2595,7 @@
           "presentation": 1,
           "presentation_rect": [
             25,
-            1105,
+            1225,
             195,
             28
           ],
@@ -2634,6 +2637,505 @@
             22
           ],
           "text": "generate prompta"
+        }
+      },
+      {
+        "box": {
+          "id": "auto_bank",
+          "maxclass": "newobj",
+          "text": "polybuffer~ third_#0_auto",
+          "patching_rect": [
+            25,
+            6328,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_players",
+          "maxclass": "newobj",
+          "text": "poly~ synchronized_voice 12",
+          "patching_rect": [
+            25,
+            6352,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_time",
+          "maxclass": "newobj",
+          "text": "*~ 10000.",
+          "patching_rect": [
+            25,
+            6376,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_automode",
+          "maxclass": "newobj",
+          "text": "prepend automode",
+          "patching_rect": [
+            25,
+            6400,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_countdown",
+          "maxclass": "newobj",
+          "text": "prepend countdown",
+          "patching_rect": [
+            25,
+            6424,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_progress",
+          "maxclass": "newobj",
+          "text": "prepend progress",
+          "patching_rect": [
+            25,
+            6448,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_autoplay",
+          "maxclass": "newobj",
+          "text": "prepend autoplay",
+          "patching_rect": [
+            25,
+            6472,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_autoposition",
+          "maxclass": "newobj",
+          "text": "prepend autoposition",
+          "patching_rect": [
+            25,
+            6496,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_autoenabled",
+          "maxclass": "newobj",
+          "text": "prepend autoenabled",
+          "patching_rect": [
+            25,
+            6520,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_mode_label",
+          "maxclass": "comment",
+          "text": "Mode: Waiting",
+          "patching_rect": [
+            25,
+            6544,
+            350,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            25,
+            110,
+            300,
+            24
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "set_auto_mode",
+          "maxclass": "newobj",
+          "text": "prepend set",
+          "patching_rect": [
+            25,
+            6568,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_countdown_label",
+          "maxclass": "comment",
+          "text": "Countdown: 0 s",
+          "patching_rect": [
+            25,
+            6592,
+            350,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            350,
+            110,
+            200,
+            24
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "set_auto_countdown",
+          "maxclass": "newobj",
+          "text": "prepend set",
+          "patching_rect": [
+            25,
+            6616,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_progress_label",
+          "maxclass": "comment",
+          "text": "Automatic sessions wait for stable EEG. Sound mappings are artistic, not emotion detection.",
+          "patching_rect": [
+            25,
+            6640,
+            350,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            25,
+            145,
+            1000,
+            65
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "set_auto_progress",
+          "maxclass": "newobj",
+          "text": "prepend set",
+          "patching_rect": [
+            25,
+            6664,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_toggle_label",
+          "maxclass": "comment",
+          "text": "Automatic",
+          "patching_rect": [
+            25,
+            6688,
+            350,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            660,
+            110,
+            110,
+            24
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "auto_toggle",
+          "maxclass": "toggle",
+          "patching_rect": [
+            700,
+            2600,
+            24,
+            24
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            780,
+            110,
+            24,
+            24
+          ],
+          "numinlets": 1,
+          "numoutlets": 1
+        }
+      },
+      {
+        "box": {
+          "id": "auto_toggle_pre",
+          "maxclass": "newobj",
+          "text": "prepend setautomatic",
+          "patching_rect": [
+            25,
+            6736,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "set_auto_enabled",
+          "maxclass": "newobj",
+          "text": "prepend set",
+          "patching_rect": [
+            25,
+            6760,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "new_session",
+          "maxclass": "textbutton",
+          "text": "Reset / New Session",
+          "patching_rect": [
+            25,
+            6784,
+            350,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            835,
+            110,
+            205,
+            28
+          ],
+          "mode": 0,
+          "numinlets": 1,
+          "numoutlets": 3
+        }
+      },
+      {
+        "box": {
+          "id": "new_session_trigger",
+          "maxclass": "newobj",
+          "text": "t b",
+          "patching_rect": [
+            25,
+            6808,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "new_session_msg",
+          "maxclass": "message",
+          "text": "new_session",
+          "patching_rect": [
+            25,
+            6832,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "performance_recorder",
+          "maxclass": "newobj",
+          "text": "sfrecord~ 2",
+          "patching_rect": [
+            25,
+            13225,
+            350,
+            22
+          ],
+          "varname": "performance_recorder",
+          "numinlets": 2,
+          "numoutlets": 2
+        }
+      },
+      {
+        "box": {
+          "id": "performance_record_label",
+          "maxclass": "comment",
+          "text": "Performance Recording",
+          "patching_rect": [
+            25,
+            13250,
+            350,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            25,
+            1420,
+            350,
+            24
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "performance_record",
+          "maxclass": "textbutton",
+          "text": "Record Performance",
+          "patching_rect": [
+            25,
+            13275,
+            350,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            25,
+            1455,
+            205,
+            28
+          ],
+          "mode": 0,
+          "numinlets": 1,
+          "numoutlets": 3
+        }
+      },
+      {
+        "box": {
+          "id": "performance_record_trigger",
+          "maxclass": "newobj",
+          "text": "t b",
+          "patching_rect": [
+            25,
+            13300,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "performance_record_msg",
+          "maxclass": "message",
+          "text": "record_performance",
+          "patching_rect": [
+            25,
+            13325,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "performance_stop",
+          "maxclass": "textbutton",
+          "text": "Stop Performance Recording",
+          "patching_rect": [
+            25,
+            13350,
+            350,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            245,
+            1455,
+            265,
+            28
+          ],
+          "mode": 0,
+          "numinlets": 1,
+          "numoutlets": 3
+        }
+      },
+      {
+        "box": {
+          "id": "performance_stop_trigger",
+          "maxclass": "newobj",
+          "text": "t b",
+          "patching_rect": [
+            25,
+            13375,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "performance_stop_msg",
+          "maxclass": "message",
+          "text": "stop_performance",
+          "patching_rect": [
+            25,
+            13400,
+            350,
+            22
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "performance_status",
+          "maxclass": "comment",
+          "text": "Ready. Records the final stereo Max output.",
+          "patching_rect": [
+            25,
+            13425,
+            350,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            25,
+            1495,
+            1000,
+            65
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "set_performance_status",
+          "maxclass": "newobj",
+          "text": "prepend set",
+          "patching_rect": [
+            25,
+            13450,
+            350,
+            22
+          ]
         }
       }
     ],
@@ -4242,6 +4744,510 @@
           ],
           "destination": [
             "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "nav",
+            7
+          ],
+          "destination": [
+            "auto_bank",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "nav",
+            8
+          ],
+          "destination": [
+            "auto_players",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "nav",
+            9
+          ],
+          "destination": [
+            "auto_time",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "shared_clock",
+            0
+          ],
+          "destination": [
+            "auto_time",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_time",
+            0
+          ],
+          "destination": [
+            "auto_players",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_players",
+            0
+          ],
+          "destination": [
+            "outL",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_players",
+            1
+          ],
+          "destination": [
+            "outR",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "oscroute",
+            17
+          ],
+          "destination": [
+            "auto_automode",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_automode",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "oscroute",
+            18
+          ],
+          "destination": [
+            "auto_countdown",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_countdown",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "oscroute",
+            19
+          ],
+          "destination": [
+            "auto_progress",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_progress",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "oscroute",
+            20
+          ],
+          "destination": [
+            "auto_autoplay",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_autoplay",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "oscroute",
+            21
+          ],
+          "destination": [
+            "auto_autoposition",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_autoposition",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "oscroute",
+            22
+          ],
+          "destination": [
+            "auto_autoenabled",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_autoenabled",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "record_route",
+            6
+          ],
+          "destination": [
+            "set_auto_mode",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "set_auto_mode",
+            0
+          ],
+          "destination": [
+            "auto_mode_label",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "record_route",
+            7
+          ],
+          "destination": [
+            "set_auto_countdown",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "set_auto_countdown",
+            0
+          ],
+          "destination": [
+            "auto_countdown_label",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "record_route",
+            8
+          ],
+          "destination": [
+            "set_auto_progress",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "set_auto_progress",
+            0
+          ],
+          "destination": [
+            "auto_progress_label",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_toggle",
+            0
+          ],
+          "destination": [
+            "auto_toggle_pre",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "auto_toggle_pre",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "record_route",
+            9
+          ],
+          "destination": [
+            "set_auto_enabled",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "set_auto_enabled",
+            0
+          ],
+          "destination": [
+            "auto_toggle",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "new_session",
+            0
+          ],
+          "destination": [
+            "new_session_trigger",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "new_session_trigger",
+            0
+          ],
+          "destination": [
+            "new_session_msg",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "new_session_msg",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "outL",
+            0
+          ],
+          "destination": [
+            "performance_recorder",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "outR",
+            0
+          ],
+          "destination": [
+            "performance_recorder",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "performance_record",
+            0
+          ],
+          "destination": [
+            "performance_record_trigger",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "performance_record_trigger",
+            0
+          ],
+          "destination": [
+            "performance_record_msg",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "performance_record_msg",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "performance_stop",
+            0
+          ],
+          "destination": [
+            "performance_stop_trigger",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "performance_stop_trigger",
+            0
+          ],
+          "destination": [
+            "performance_stop_msg",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "performance_stop_msg",
+            0
+          ],
+          "destination": [
+            "session",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "record_route",
+            10
+          ],
+          "destination": [
+            "set_performance_status",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "set_performance_status",
+            0
+          ],
+          "destination": [
+            "performance_status",
             0
           ]
         }

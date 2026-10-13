@@ -441,6 +441,17 @@ class FlowTests(unittest.TestCase):
         self.assertEqual(boxes['sync_players']['text'], 'poly~ synchronized_voice 12')
         self.assertIn((['shared_time', 0], ['sync_players', 0]), cords)
         self.assertIn((['nav', 3], ['sync_players', 0]), cords)
+        self.assertIn('/session/play', boxes['oscroute']['text'])
+        self.assertIn('/session/position', boxes['oscroute']['text'])
+        self.assertEqual(boxes['auto_bank']['text'], 'polybuffer~ third_#0_auto')
+        self.assertIn((['nav', 7], ['auto_bank', 0]), cords)
+        self.assertIn((['nav', 8], ['auto_players', 0]), cords)
+        self.assertIn((['shared_clock', 0], ['auto_time', 0]), cords)
+        self.assertIn((['auto_players', 0], ['outL', 0]), cords)
+        self.assertIn((['auto_players', 1], ['outR', 0]), cords)
+        self.assertEqual(boxes['performance_recorder']['text'], 'sfrecord~ 2')
+        self.assertIn((['outL', 0], ['performance_recorder', 0]), cords)
+        self.assertIn((['outR', 0], ['performance_recorder', 1]), cords)
         voice = json.loads((Path(__file__).resolve().parents[1]/'max/synchronized_voice.maxpat').read_text())['patcher']
         voice_text = [item['box'].get('text') for item in voice['boxes']]
         self.assertIn('in 1', voice_text)

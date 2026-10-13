@@ -13,6 +13,9 @@ var recordingTask = new Task(stoprecord, this);
 var recordStartTask = new Task(beginRecording, this);
 var initializeTask = new Task(loadbang, this);
 initializeTask.schedule(100);
+var startSystemTask = new Task(system, this);
+var performanceRecording = false, performancePath = '';
+var performanceTask = new Task(beginPerformance, this);
 
 function display(name, value) { outlet(2, name, value); }
 function projectRoot(path) {
@@ -33,6 +36,7 @@ function loadbang() {
     refreshPrompt();
     refreshTask.interval = 2000;
     refreshTask.repeat();
+    startSystemTask.schedule(1500);
 }
 function folder(path) {
     generatedFolder = String(path);
@@ -92,6 +96,7 @@ function savePrompts() {
     savedPrompts = text;
 }
 function record(label) {
+    setautomatic(0);
     label = String(label).toUpperCase();
     if (label !== 'A' && label !== 'B') return;
     if (!root || root.charAt(0) !== '/') { display('recording', 'Recording disabled: reopen the saved project patch.'); return; }
@@ -124,11 +129,46 @@ function stoprecord() {
     }
 }
 function notifydeleted() {
+    stop_performance();
     savePrompts();
     initializeTask.cancel();
+    startSystemTask.cancel();
     stoprecord();
     refreshTask.cancel();
     promptText.freepeer();
+}
+
+function record_performance() {
+    if (performanceRecording) return;
+    if (!root || root.charAt(0) !== '/') {
+        display('performance', 'Reopen the saved project patch before recording.');
+        return;
+    }
+    var now = new Date();
+    function pad(value, width) { return ('000' + value).slice(-width); }
+    var stamp = now.getFullYear() + '-' + pad(now.getMonth() + 1, 2) + '-' + pad(now.getDate(), 2) +
+        '_' + pad(now.getHours(), 2) + '-' + pad(now.getMinutes(), 2) + '-' + pad(now.getSeconds(), 2) +
+        '-' + pad(now.getMilliseconds(), 3);
+    performancePath = root + 'audio/performances/Performance_' + stamp + '.wav';
+    var recorder = this.patcher.getnamed('performance_recorder');
+    recorder.message('samptype', 'int24');
+    recorder.message('open', performancePath, 'wave');
+    performanceRecording = true;
+    display('dsp', 1);
+    display('performance', 'Preparing performance recording...');
+    performanceTask.schedule(150);
+}
+function beginPerformance() {
+    if (!performanceRecording) return;
+    this.patcher.getnamed('performance_recorder').message('int', 1);
+    display('performance', 'Recording Max output: ' + performancePath);
+}
+function stop_performance() {
+    performanceTask.cancel();
+    if (!performanceRecording) return;
+    this.patcher.getnamed('performance_recorder').message('int', 0);
+    performanceRecording = false;
+    display('performance', 'Saved performance: ' + performancePath);
 }
 
 function system() {
@@ -173,8 +213,20 @@ function readEditors() {
         drafts[label] = value instanceof Array ? value.join(' ') : String(value || '');
     }
 }
-function complete() { outlet(3, 'reload'); }
+function complete() { outlet(3, 'folder', root + 'audio/generated/'); }
+function setautomatic(value) {
+    outlet(4, '/session/automatic', value);
+    outlet(3, 'automatic', value);
+}
+function new_session() { stoprecord(); outlet(4, '/session/reset', 1); }
+function automode() { display('mode', 'Mode: ' + arrayfromargs(arguments).join(' ')); }
+function countdown(value) { display('countdown', 'Countdown: ' + value + ' s'); }
+function progress() { display('progress', arrayfromargs(arguments).join(' ')); }
+function autoplay() { outlet(3, 'autoplay', arrayfromargs(arguments).join(' ')); }
+function autoposition(value) { outlet(3, 'autoposition', value); }
+function autoenabled(value) { outlet(3, 'automatic', value); display('automatic', value); }
 function generate(kind) {
+    setautomatic(0);
     if (recording) {
         display('backend', 'Click Stop Recording before generating.');
         return;

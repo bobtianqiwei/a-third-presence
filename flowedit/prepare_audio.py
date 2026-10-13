@@ -44,7 +44,7 @@ def describe(session, data):
     return caption
 
 
-def save_sequence(a, b, result, descriptions, output, headers):
+def save_sequence(a, b, result, descriptions, output, headers, include_b=True, extra_metadata=None):
     slots = sorted(result['intermediates'],
                    key=lambda slot: -float(slot['label'].removeprefix('t=')))
     if len(slots) != NUM_INTERMEDIATES:
@@ -53,7 +53,8 @@ def save_sequence(a, b, result, descriptions, output, headers):
     for i, slot in enumerate(slots, 1):
         files.append((f'{i:02d}_intermediate.wav', base64.b64decode(slot['audio_b64'], validate=True)))
     files.append((f'{len(files):02d}_AI_target.wav', base64.b64decode(result['final']['audio_b64'], validate=True)))
-    files.append((f'{len(files):02d}_B.wav', b))
+    if include_b:
+        files.append((f'{len(files):02d}_B.wav', b))
     for name, data in files:
         validate_wav(data, name)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -74,6 +75,7 @@ def save_sequence(a, b, result, descriptions, output, headers):
                         notebook=NOTEBOOK, endpoint=HUB,
                         queued_seconds=headers.get('X-FlowEdit-Queued-S'),
                         render_seconds=headers.get('X-FlowEdit-Render-S'))
+        metadata.update(extra_metadata or {})
         (staged / 'metadata.json').write_text(json.dumps(metadata, indent=2) + '\n')
         if output.exists():
             output.rename(backup)
